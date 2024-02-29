@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# A bash script that pings an IP address 5 times
+# IP address will be passed as an argument
+# If no argument is passed, an usage message is displays
+# If the argument passed does not seem to be a valid ipv4 or ipv6 address
+#+ an error message is displayed
+
+err_usage="Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+
+if [[ "$#" -eq 0 ]]; then
+    echo "$err_usage"
+    exit 1
+fi
+
+ip_address="$1"
+valid_ipv4=0
+valid_ipv6=0
+
+if [[ "$1" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+    valid_ipv4=1
+elif [[ "$1" =~ ^[0-9a-fA-F:]+:[0-9a-fA-F:]+$ ]]; then
+    valid_ipv6=1
+fi
+
+if [[ $valid_ipv4 -eq 0 && $valid_ipv6 -eq 0 ]]; then
+    echo "'$ip_address' is not a valid IPv4 or IPv6 Address"
+    exit 1
+fi
+
+ping -c 5 "$1"

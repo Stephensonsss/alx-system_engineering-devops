@@ -1,17 +1,6 @@
-# this Puppet manifest installs `flask` from `pip3`
-
-exec { 'update-apt':
-    command     => '/usr/bin/apt-get update',
-    refreshonly => true,
-}
-
-package { 'python3-pip':
-    ensure  => installed,
-    require => Exec['update-apt'],
-}
-
+# A puppet manifest installing flask v2.1.0 which is a package from pip3.
+# Am also specifying the version of flask to install using the ensure attribute
 package { 'flask':
-    ensure   => '2.1.0',
-    provider => 'pip3',
-    require  => Package['python3-pip'],
+  ensure   => '2.1.0',
+  provider => pip3,
 }

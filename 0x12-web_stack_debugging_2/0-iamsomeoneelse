@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# run the `whoami` command as a use passed as first argument
+if [[ -z "$1" ]]; then
+    echo "No user name passed"
+    exit 1
+fi
+
+sudo -u "$1" whoami

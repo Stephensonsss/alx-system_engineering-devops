@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# This task required connecting to a container and debugging to get nginx to listen on port 80
+# It was found that in the default sites-enabled file, nginx was configured to listen on port 8080
+#
+# You can start by running
+#   service nginx status
+#+this confirms nginx is installed and but not running. we can attempt to start it
+#   service nginx start
+#+but nginx will fail to start. and you see this again by running
+#   service nginx status
+# Let's check the list of processes to see if anything is interesting
+#   ps -ef
+# This will show you that nginx is running (even though it said it is not)
+#+and it is configured that way using some scripts which also show up as processes.
+#+you can dig into the files shown there, but basically they start
+#+an nginx process on start up which binds to port 8080 based on the bug in the nginx
+#+configuration that we are about to fix
+# You can confirm this by installing lsof and running:
+#   lsof -i tcp:8080
+# While we are at is, let's make sure that nothing is listening on port 80
+#   lsof -i tcp:80
+# If we dig into the nginx configuration files, we quickly find that
+#+the problem is the listening port specified in default sites-enabled file is 8080
+# You could change this using sed or you could delete the file and create a symlink to the
+#+default file in sites-available directory which is what is most recommended
+#+but we also need to make sure that the default listening port in sites-available file is 80
+# After we confirm this, we can go ahead and run our commands for deleting a creating the symlink
+
+# update package index
+apt update &>/dev/null;
+
+# install lsof a helpful and easy to use tool
+if ! which lsof &>/dev/null; then
+    apt install lsof -y &>/dev/null;
+fi
+
+# delete bugged file
+rm /etc/nginx/sites-enabled/default;
+
+# create a symlink to the default file in sites-available directory instead
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default;
+
+# try to stop and start nginx
+service nginx stop &>/dev/null;
+
+# check if nginx is running
+if ! service nginx start &>/dev/null; then
+    echo "nginx failed to start"
+    exit 1
+fi
+
+echo "nginx started successfully"
+
+# check nginx is running on port 80
+if ! lsof -i :80; then
+    echo "nginx is not listening on port 80"
+    exit 1
+fi
+
+echo "nginx is listening on port 80"
+echo "All Done!"

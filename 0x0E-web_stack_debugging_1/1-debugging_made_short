@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Make answer in previous file 5 lines max, ony using the most important steps
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+service nginx restart
+pkill -o nginx

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """This module makes a requests to a REST API and uses the data received"""
 import requests
 from sys import argv, stderr

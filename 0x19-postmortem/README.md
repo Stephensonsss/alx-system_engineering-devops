@@ -1,4 +1,4 @@
-
+./postmorterm_technical.webp
 ### **Scenario:**
 A web-based application that provides real-time analytics for marketing campaigns experienced a significant outage. Users were unable to access the dashboard, and data processing was delayed.
 
@@ -21,7 +21,6 @@ The outage lasted from 1:00 PM to 2:45 PM UTC on August 22, 2024. During this ti
 
 **Root Cause and Resolution:**
 The root cause was an incorrect configuration in the API gateway, which caused it to route traffic improperly, leading to request failures. The resolution involved identifying the misconfiguration, correcting the API gateway settings, and rebooting the backend servers to ensure stability.
-https://camo.githubusercontent.com/2054de1a9ae4c05f4e01490a2b2ec304166c5baf56855087471d579c6e5cba89/68747470733a2f2f626c6f672e73797374656d73656e67696e656572696e672e636f6d2f68732d66732f68756266732f626c6f672d66696c65732f526f6f7425323043617573652e6a70673f77696474683d363030266e616d653d526f6f7425323043617573652e6a7067
 **Corrective and Preventative Measures:**
 To prevent this issue in the future, the following measures should be implemented:
 1. **Improve API Gateway Configuration Management:** Ensure that configurations are reviewed and tested thoroughly before deployment.

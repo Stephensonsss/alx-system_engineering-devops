@@ -1,4 +1,4 @@
-./postmorterm_technical.webp
+(./postmorterm_technical.webp)
 ### **Scenario:**
 A web-based application that provides real-time analytics for marketing campaigns experienced a significant outage. Users were unable to access the dashboard, and data processing was delayed.
 

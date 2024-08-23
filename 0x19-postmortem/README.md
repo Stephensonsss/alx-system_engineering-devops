@@ -1,8 +1,5 @@
 
-
-
-
-![**Scenario:**](./postmoterm_technical.webp)
+![**Scenario:**](./postmorterm_technical.webp)
 
 
 

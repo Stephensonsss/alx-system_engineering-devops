@@ -19,7 +19,8 @@ The outage lasted from 1:00 PM to 2:45 PM UTC on August 22, 2024. During this ti
 - **2:30 PM:** Backend servers were rebooted to clear any lingering issues.
 - **2:45 PM:** The service was fully restored, and normal operations resumed.
 
-**Root Cause and Resolution:**
+
+![**Root Cause and Resolution:**](./postmoterm_root_cause.webp)
 The root cause was an incorrect configuration in the API gateway, which caused it to route traffic improperly, leading to request failures. The resolution involved identifying the misconfiguration, correcting the API gateway settings, and rebooting the backend servers to ensure stability.
 **Corrective and Preventative Measures:**
 To prevent this issue in the future, the following measures should be implemented:

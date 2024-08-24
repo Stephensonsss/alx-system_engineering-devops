@@ -1,6 +1,7 @@
-# Puppet manifest to fix a bug in wp-setings.php
+# a puppet code that fixes a wordpress site 5xx error to 200 ok
+# editing the mistyped .phpp to php in the /var/www/html/wp-settings.php file
 
-exec { 'fix the php extension issue':
-  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
-    path    => '/usr/local/bin/:/bin/'
-    }
+exec { 'fix-wordpess-server-error':
+    command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+    path    => '/usr/bin/:/bin/',
+}
